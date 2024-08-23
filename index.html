@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Profil Mewah</title>
+    <style>
+        /* Reset CSS dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Gaya dasar untuk body */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #f7f7f7, #d3d3d3);
+            color: #333;
+        }
+
+        /* Gaya untuk header */
+        header {
+            background: #222;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Gaya untuk navigasi */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffd700;
+        }
+
+        /* Gaya untuk setiap section */
+        section {
+            padding: 60px 20px;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 900px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            color: #222;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        section p {
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        /* Gaya untuk bagian profil dengan gambar */
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .profile img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        /* Gaya untuk form */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form label, form input {
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        form input[type="text"], form input[type="email"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        form input[type="submit"] {
+            background-color: #222;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #444;
+        }
+
+        /* Gaya untuk footer */
+        footer {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Tambahkan animasi pada scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Selamat Datang di Website Profil Saya</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="fade-in">
+        <h2>Home</h2>
+        <p>Ini adalah halaman home dari website profil mewah saya. Website ini dirancang untuk memberikan kesan elegan dan modern dengan desain yang minimalis dan menarik.</p>
+    </section>
+
+    <section id="about" class="fade-in">
+        <h2>About Me</h2>
+        <div class="profile">
+            <img src="https://cdn.antaranews.com/cache/1200x800/2024/01/24/zyro-image.png-4.jpg" alt="Foto Profil">
+            <p>Halo! Nama saya adalah [Nama Anda]. Saya adalah seorang siswa yang tertarik dengan pemrograman web, desain grafis, dan teknologi terbaru. Saya suka belajar hal-hal baru dan berbagi pengetahuan dengan orang lain.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="fade-in">
+        <h2>Contact Me</h2>
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Ambil data dari form
+            $nama = htmlspecialchars($_POST['name']);
+            $email = htmlspecialchars($_POST['email']);
+
+            // Email tujuan
+            $to = "atahiktriatmaja@gmail.com";  // Ganti dengan alamat email yang Anda inginkan
+            $subject = "Pesan dari Form Kontak";
+            $message = "Nama: " . $nama . "\n";
+            $message .= "Email: " . $email . "\n";
+            $headers = "From: " . $email . "\r\n";
+
+            // Kirim email
+            if (mail($to, $subject, $message, $headers)) {
+                echo "<p>Pesan berhasil dikirim!</p>";
+            } else {
+                echo "<p>Pesan gagal dikirim.</p>";
+            }
+        }
+        ?>
+        <form id="contactForm" method="post" action="">
+            <label for="name">Nama:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br>
+            <input type="submit" value="Kirim">
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Website Profil Mewah. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
